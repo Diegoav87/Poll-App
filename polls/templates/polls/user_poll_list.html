@@ -4,7 +4,7 @@
 <div class="shadow card mt-4 w-75 mr-auto ml-auto">
     <h5 class="card-header">{{poll_user.username}} Poll List</h5>
     <ul class="list-group list-group-flush">
-        {% for poll in poll_user.polls.all %}
+        {% for poll in poll_user_list %}
             <li class="list-group-item">
                 <div class="d-flex">
                     <h6>{{poll.question}}</h6>

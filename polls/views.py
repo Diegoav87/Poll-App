@@ -26,17 +26,23 @@ class PollList(generic.ListView):
     model = Poll
     template_name = 'polls/poll_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['polls'] = Poll.objects.all().order_by('-vote_total')
+        return context
+
 class UserPollList(generic.ListView, LoginRequiredMixin):
     model = Poll
     template_name = 'polls/user_poll_list.html'
 
     def get_queryset(self):
         self.poll_user = User.objects.get(username=self.kwargs.get('username'))
-        return self.poll_user.polls.all()
+        return self.poll_user.polls.all().order_by('-vote_total')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["poll_user"] = self.poll_user 
+        context['poll_user_list'] = self.get_queryset()
         return context
 
 class DeletePoll(generic.DeleteView, LoginRequiredMixin):
@@ -67,7 +73,8 @@ def vote(request, poll_id):
             poll.option_three_count += 1
         else:
             raise Http404
-    
+        
+        poll.vote_total = poll.total()
         poll.save()
         return redirect('polls:all')
     

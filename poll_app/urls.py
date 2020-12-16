@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('polls/', include('polls.urls', namespace='polls'))
+    path('polls/', include('polls.urls', namespace='polls')),
+    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
 ]

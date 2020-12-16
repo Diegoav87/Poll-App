@@ -13,6 +13,7 @@ class Poll(models.Model):
     option_two_count = models.IntegerField(default=0)
     option_three_count = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='polls')
+    vote_total = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse("polls:all")
