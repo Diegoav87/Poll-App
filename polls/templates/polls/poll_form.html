@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron mt-4">
+    <h1 class="display-4">Create Poll</h1>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.non_field_errors}}
+            <div class="form-group">
+                {{form.question.errors}}
+                {{form.question.label_tag}}
+                {{form.question}}
+            </div>
+            <div class="d-flex mt-4">
+                <div class="form-group mr-4">
+                    {{form.option_one.errors}}
+                    {{form.option_one.label_tag}}
+                    {{form.option_one}}
+                </div>
+                <div class="form-group mr-4">
+                    {{form.option_two.errors}}
+                    {{form.option_two.label_tag}}
+                    {{form.option_two}}
+                </div>
+                <div class="form-group">
+                    {{form.option_three.errors}}
+                    {{form.option_three.label_tag}}
+                    {{form.option_three}}
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Create Poll">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

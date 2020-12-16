@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="shadow card mt-4 w-75 mr-auto ml-auto">
+    <h5 class="card-header">{{poll_user.username}} Poll List</h5>
+    <ul class="list-group list-group-flush">
+        {% for poll in poll_user.polls.all %}
+            <li class="list-group-item">
+                <div class="d-flex">
+                    <h6>{{poll.question}}</h6>
+                    <a href="{% url 'polls:results' poll.id %}" class="btn btn-primary btn-sm text-white ml-auto">Results</a>
+                    {% if user == poll_user %}
+                        <a href="{% url 'polls:delete' pk=poll.pk %}" class="btn btn-danger btn-sm text-white ml-2">Delete</a>
+                    {% else %}
+                        <a href="{% url 'polls:vote' poll.id %}" class="btn btn-primary btn-sm text-white ml-2">Vote</a>
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

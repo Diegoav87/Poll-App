@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card mt-4 w-75 mr-auto ml-auto">
+    <h5 class="card-header">Poll Results</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{poll.question}}</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{poll.option_one}}: {{poll.option_one_count}}</li>
+            <li class="list-group-item">{{poll.option_two}}: {{poll.option_two_count}}</li>
+            <li class="list-group-item">{{poll.option_three}}: {{poll.option_three_count}}</li>
+            <li class="list-group-item"><strong>Total: {{poll.total}}</strong></li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="shadow card mt-4 w-75 mr-auto ml-auto">
+    <h5 class="card-header">All Polls</h5>
+    <ul class="list-group list-group-flush">
+        {% for poll in poll_list %}
+            <li class="list-group-item">
+                <div class="d-flex">
+                    <h6>{{poll.question}}</h6>
+                    {% if user != poll.user %}
+                        <a href="{% url 'polls:vote' poll.id %}" class="btn btn-primary btn-sm text-white ml-auto">Vote</a>
+                        <a href="{% url 'polls:results' poll.id %}" class="btn btn-primary btn-sm text-white ml-2">Results</a>
+                    {% else %}
+                        <a href="{% url 'polls:results' poll.id %}" class="btn btn-primary btn-sm text-white ml-auto">Results</a>
+                    {% endif %}
+                </div>
+                <div>
+                    <a class="" href="{% url 'polls:user_poll_list' username=poll.user.username %}">@{{poll.user.username}}</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

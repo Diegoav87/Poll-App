@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron mt-4">
+    <h1 class="display-4">Welcome to the poll app!</h1>
+    <p class="lead">This is a simple poll app that lets you vote and create different poles!</p>
+    <a class="btn btn-primary" href="{% url 'polls:all' %}">See all polls</a>
+</div>
+
+<div class="card-group">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vote</h5>
+            <p class="card-text">You can vote for every poll you want!</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Create</h5>
+            <p class="card-text">Get started by making your own polls with your free accounts!</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Results</h5>
+            <p class="card-text">See the results for every poll by creating a free account!</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
